@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" class="no-js" data-ng-app="app">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Index Static file</title>
+</head>
+</head>
+<body data-ng-controller="AppCtrl">
+
+	<script th:src="@{~/angularjs/lib/jquery/dist/jquery.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/lib/angular/angular.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/lib/angular-ui-router/release/angular-ui-router.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/lib/oclazyload/dist/ocLazyLoad.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/lib/ngstorage/ngStorage.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/lib/fastclick/lib/fastclick.js?xdate=(${date})}"></script>
+	
+	<div data-ui-view>
+    </div>
+    
+    
+	<script th:src="@{~/angularjs/scripts/app.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/scripts/app.main.js?xdate=(${date})}"></script>
+	<script th:src="@{~/angularjs/scripts/config.route.js?xdate=(${date})}"></script>
+
+</body>
+</html>

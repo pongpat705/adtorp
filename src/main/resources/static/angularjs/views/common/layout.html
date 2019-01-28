@@ -1,0 +1,13 @@
+<!-- content panel -->
+<div style="align-items: stretch">
+
+  <!-- top header -->
+  <div class="header navbar"  ng-class="{'search-open' : toggle.searchBox}" data-ng-include="'angularjs/views/common/header.html'"></div>
+  <!-- /top header -->
+
+  <!-- main area -->
+  <div class="main-content {{$state.current.data.contentClasses}}" data-ui-view></div>
+  <!-- /main area -->
+
+</div>
+
