@@ -1,0 +1,13 @@
+      <table>
+				<tr>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Release Year</th>
+				</tr>
+				<tr *ngFor="let f of filmList">
+					<td>{{f.title}}</td>
+					<td>{{f.description}}</td>
+					<td>{{f.releaseYear}}</td>
+				</tr>
+
+			</table>
