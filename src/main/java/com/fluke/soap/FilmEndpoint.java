@@ -17,8 +17,8 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.fluke.entity.Film;
 import com.fluke.repository.FilmRepository;
-import com.fluke.soap.io.spring.guides.gs_producing_web_service.GetFilmRequest;
-import com.fluke.soap.io.spring.guides.gs_producing_web_service.GetFilmResponse;
+import com.fluke.soap.schema.GetFilmRequest;
+import com.fluke.soap.schema.GetFilmResponse;
 
 @Endpoint
 public class FilmEndpoint {
@@ -31,11 +31,12 @@ public class FilmEndpoint {
 	@ResponsePayload
 	public GetFilmResponse getCountry(@RequestPayload GetFilmRequest request) {
 		GetFilmResponse response = new GetFilmResponse();
+		@SuppressWarnings("deprecation")
 		Pageable pageable = new PageRequest(request.getPage(), request.getSize());
 		
 		Page<Film> searchResults = filmRepos.findByRating(pageable, request.getRating());
 		for (Film film : searchResults.getContent()) {
-			com.fluke.soap.io.spring.guides.gs_producing_web_service.Film x = new com.fluke.soap.io.spring.guides.gs_producing_web_service.Film();
+			com.fluke.soap.schema.Film x = new com.fluke.soap.schema.Film();
 			x.setDescription(film.getDescription());
 			x.setFilmId(film.getFilmId());
 			x.setLanguageId(film.getLanguageId());
