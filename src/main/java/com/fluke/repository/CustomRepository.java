@@ -12,6 +12,7 @@ import org.hibernate.internal.SessionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.fluke.entity.Film;
 
@@ -38,7 +39,11 @@ public class CustomRepository {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT * ");
-		sb.append(" FROM film WHERE rating = :rating ");
+		sb.append(" FROM film WHERE 1=1 ");
+		if(null != rating && !StringUtils.containsWhitespace(rating)) {
+			sb.append(" AND rating = :rating ");
+		}
+		
 		
 		if(!orderColumn.isEmpty()) {
 			sb.append(" ORDER BY  ");
@@ -52,7 +57,6 @@ public class CustomRepository {
 					cOrder += ","+xOrder;
 				}
 			}
-			
 			cOrder += " "+direction;
 			
 			sb.append(cOrder);
@@ -70,7 +74,10 @@ public class CustomRepository {
 		
 		log.info("sql log : {} ", sb.toString());
 		Query query = getSession().createNativeQuery(sb.toString(), Film.class);
-		query.setParameter("rating", rating);
+		if(null != rating && !StringUtils.containsWhitespace(rating)) {
+			query.setParameter("rating", rating);
+		}
+		
 		
 		
 		List<Film> result = query.getResultList();

@@ -21,9 +21,7 @@ export class FilmService {
   /** GET filmes from the server */
   getFilmes (): Observable<Film[]> {
     return this.http.get<Film[]>(this.filmesUrl)
-
       .pipe(
-        map(filmes => filmes.content),
         tap(_ => console.log('fetched filmes')),
         catchError(this.handleError('getFilmes', []))
       );

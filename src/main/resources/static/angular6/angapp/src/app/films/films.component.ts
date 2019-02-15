@@ -19,7 +19,7 @@ constructor(private filmService: FilmService) { }
 
   getFilms(): void {
     this.filmService.getFilmes()
-    .subscribe(filmList => this.filmList = filmList);
+    .subscribe(response => this.filmList = response);
   }
 
 }

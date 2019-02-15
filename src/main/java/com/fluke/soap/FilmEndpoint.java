@@ -23,7 +23,7 @@ import com.fluke.soap.schema.GetFilmResponse;
 @Endpoint
 public class FilmEndpoint {
 
-	private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
+	private static final String NAMESPACE_URI = "http://fluke.com/soap/schema";
 	
 	@Autowired FilmRepository filmRepos;
 	

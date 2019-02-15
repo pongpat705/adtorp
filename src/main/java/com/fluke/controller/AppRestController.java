@@ -37,12 +37,10 @@ public class AppRestController {
 	
 	
 	@GetMapping("/allFilmsByRatingViaReposNamedMethod")
-	public ResponseEntity<Page<Film>> allFilmsByReposNamedMethod(Pageable pageable, @RequestParam String rating){
+	public List<Film> allFilmsByReposNamedMethod(Pageable pageable, @RequestParam String rating){
 		Page<Film> body = filmRepos.findByRating(pageable, rating);
 		
-		ResponseEntity<Page<Film>> result = new ResponseEntity<Page<Film>>(body, HttpStatus.OK);
-		
-		return result;
+		return body.getContent();
 	}
 	
 	@GetMapping("/allFilmsByRatingViaReposCustomNativeQueryMethod")
@@ -56,9 +54,9 @@ public class AppRestController {
 	}
 	
 	@GetMapping("/allFilmsByRatingViaSpecification")
-	public ResponseEntity<Page<Film>> allFilmsBySpecification(Pageable pageable, @RequestParam String rating){
+	public ResponseEntity<Page<Film>> allFilmsBySpecification(Pageable pageable, @RequestParam String rating, @RequestParam(required=false) String releaseYear){
 		
-		Page<Film> body = filmSpecs.findByRating(pageable, rating);
+		Page<Film> body = filmSpecs.findByRating(pageable, rating, releaseYear);
 		
 		ResponseEntity<Page<Film>> result = new ResponseEntity<Page<Film>>(body, HttpStatus.OK);
 		
