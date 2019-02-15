@@ -1,5 +1,4 @@
 runtime: java
-version: 2
 env: flex
 
 handlers:
