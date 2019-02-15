@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
 function getAllFilm(page, size, rating){
 	$.ajax({
-	    url: '/api/allFilmsByRatingViaReposNamedMethod?page='+page+'&rating='+rating+'&size='+size,
+	    url: '/api/allFilmsByRatingViaReposCustomNativeQueryMethod?page='+page+'&rating='+rating+'&size='+size,
 	    type: "get",
 	    dataType: "json",
 	    
