@@ -62,7 +62,21 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams',
 //                redirectTo: 'user.signout'
 //              }
 //            }
-    })
+    }).state('app.inquiry',{
+        url: '/inquiry',
+        templateUrl: './angularjs/views/app/inquiry.html',
+        controller: 'inquiryCtrl',
+        resolve: {
+            deps: ['$ocLazyLoad', function($ocLazyLoad) {
+              return $ocLazyLoad.load([{
+                  files: [
+                            './angularjs/scripts/controllers/inquiryCtrl.js',
+                            './angularjs/scripts/services/services.js'
+                          ]
+                }]);
+            }]
+          }
+  })
       
      ;
   }

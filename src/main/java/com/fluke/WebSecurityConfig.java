@@ -12,14 +12,10 @@ import com.fluke.component.AdtorpFilter;
 @EnableWebSecurity 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired AdtorpFilter adtorpFilter;
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable().authorizeRequests()
 				.antMatchers("/*").permitAll()
-				.and()
-				.addFilter(adtorpFilter)
 			;
 	}
 
