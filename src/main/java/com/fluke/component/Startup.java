@@ -1,41 +1,41 @@
 package com.fluke.component;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.fluke.entity.Film;
-import com.fluke.repository.FilmRepository;
+import com.fluke.entity.MasterUser;
+import com.fluke.entity.UserRole;
+import com.fluke.repository.MasterUserRepository;
+import com.fluke.repository.UserRoleRepository;
+
 
 @Component
 public class Startup {
 	
-	List<Film> films;
 	
-
-	@Autowired
-	FilmRepository filmRepos;
+	@Autowired private MasterUserRepository masterUserRepository;
 	
+	@Autowired private UserRoleRepository userRoleRepository;
 	
+	@Transactional
 	@PostConstruct
 	public void init() {
 		
-		films = filmRepos.findAll();
+		MasterUser masterUser = new MasterUser();
+		masterUser.setUserName("hello");
+		masterUser.setPassword("password");
+		masterUserRepository.save(masterUser);
+		
+		UserRole userRole = new UserRole();
+		userRole.setUserCode(masterUser.getUserName());
+		userRole.setRoleName("ROLE_STAFF");
+		userRole.setObjectName("INQUIRY");
+		userRoleRepository.save(userRole);
 		
 	}
-	
-
-	public List<Film> getFilms() {
-		return films;
-	}
-
-	public void setFilms(List<Film> films) {
-		this.films = films;
-	}
-	
 	
 
 }

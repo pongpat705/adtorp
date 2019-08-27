@@ -12,9 +12,8 @@ import org.hibernate.internal.SessionImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
 
-import com.fluke.entity.Film;
+import com.fluke.entity.Book;
 
 @Repository
 public class CustomRepository {
@@ -34,14 +33,13 @@ public class CustomRepository {
 		return this.em.unwrap(Session.class);
 	}
 	
-	public List<Film> findFilmByRating(String rating, int page, int size, List<String> orderColumn, String direction){
-		
+	public List<Book> findBookByReleaseYear(Long releaseYear, int page, int size, List<String> orderColumn, String direction){
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT * ");
-		sb.append(" FROM film WHERE 1=1 ");
-		if(null != rating && !StringUtils.containsWhitespace(rating)) {
-			sb.append(" AND rating = :rating ");
+		sb.append(" FROM BOOK WHERE 1=1 ");
+		if(null != releaseYear) {
+			sb.append(" AND releaseYear = :releaseYear ");
 		}
 		
 		
@@ -73,14 +71,12 @@ public class CustomRepository {
 		
 		
 		log.info("sql log : {} ", sb.toString());
-		Query query = getSession().createNativeQuery(sb.toString(), Film.class);
-		if(null != rating && !StringUtils.containsWhitespace(rating)) {
-			query.setParameter("rating", rating);
+		Query query = getSession().createNativeQuery(sb.toString(), Book.class);
+		if(null != releaseYear) {
+			query.setParameter("releaseYear", releaseYear);
 		}
 		
-		
-		
-		List<Film> result = query.getResultList();
+		List<Book> result = query.getResultList();
 		
 		return result;
 	}

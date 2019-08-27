@@ -1,9 +1,0 @@
-runtime: java
-env: flex
-
-handlers:
-- url: /.*
-  script: this field is required, but ignored
-  
-health_check:
-  enable_health_check: False
