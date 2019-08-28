@@ -1,10 +1,10 @@
-package com.fluke;
+package com.fluke.security;
 
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
 
-public class AppAuthenticateUser implements Authentication {
+public class AppAuthentication implements Authentication {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -16,12 +16,12 @@ public class AppAuthenticateUser implements Authentication {
 	private String principal;
 	
 
-	public AppAuthenticateUser() {
+	public AppAuthentication() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AppAuthenticateUser(String name, AppCredential credentials, List<Authorities> authorities,
+	public AppAuthentication(String name, AppCredential credentials, List<Authorities> authorities,
 			boolean authenticated, AppUserDetail details, String principal) {
 		super();
 		this.name = name;

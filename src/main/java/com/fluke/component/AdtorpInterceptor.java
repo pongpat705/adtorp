@@ -1,5 +1,7 @@
 package com.fluke.component;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,6 +31,10 @@ public class AdtorpInterceptor extends HandlerInterceptorAdapter{
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
 		log.info("response status {}", response.getStatus());
+		List<String> headersName = (List<String>) response.getHeaderNames();
+		for (String h : headersName) {
+			log.info("response header {} value {}", h, response.getHeader(h).toString());
+		}
 		super.postHandle(request, response, handler, modelAndView);
 	}
 

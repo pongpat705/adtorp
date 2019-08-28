@@ -1,4 +1,4 @@
-package com.fluke;
+package com.fluke.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import com.fluke.repository.MasterUserRepository;
 import com.fluke.repository.UserRoleRepository;
 
 @Component
-public class AppAuthentication implements AuthenticationProvider{
+public class AppAuthenticationProvider implements AuthenticationProvider{
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -56,7 +56,7 @@ public class AppAuthentication implements AuthenticationProvider{
 			}
 		}
 		
-		Authentication authentication2 = new AppAuthenticateUser(username, credentials, authorities, authenticated, details, password);
+		Authentication authentication2 = new AppAuthentication(username, credentials, authorities, authenticated, details, password);
         return  authentication2;
 	}
 

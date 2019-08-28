@@ -1,4 +1,4 @@
-package com.fluke;
+package com.fluke.security;
 
 import org.springframework.security.core.GrantedAuthority;
 
